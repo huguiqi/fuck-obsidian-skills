@@ -1,5 +1,7 @@
 # Jackywine Digital Garden Skills
 
+![Jackywine Digital Garden Skills](assets/social-preview.png)
+
 Agent skills for a **dual-layer digital garden**: **flomo as L1 memory** (flash notes, tweet ingest) and **local Obsidian as disk** (full-text clippings, dense `[[wikilinks]]`).
 
 These follow the [Agent Skills specification](https://agentskills.io/specification) so they work with skills-compatible agents (Grok Bot, Claude Code, Codex, OpenCode, etc.).
@@ -25,8 +27,6 @@ These follow the [Agent Skills specification](https://agentskills.io/specificati
 ```sh
 npx skills add https://github.com/Jackywine/jackywine-digital-garden-skills
 ```
-
-(Replace the GitHub path with the real repo URL after first publish.)
 
 Also add Kepano’s pack:
 
