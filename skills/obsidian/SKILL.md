@@ -12,14 +12,14 @@ description: Use when the user wants to clip/ingest a batch of articles, talks, 
 # obsidian — 剪藏 + 编译（raw → wiki）
 
 > 方法论角色：`raw/` 进料 + `wiki/` 编译。这是 Karpathy「编译器」的主入口。
-> 范围：批量、项目制、真抓全文。单篇随手记走 `flash-idea`（记忆层）；写入规范见 `obsidian-apprentice-rules`。
+> 范围：批量、项目制、真抓全文。单篇随手记（**纯文本/聊天记录**输入）走 `flash-idea`（记忆层）；写入规范见 `obsidian-apprentice-rules`。
 
 ## 0 · 两个禁令（不问，别做）
 1. **不做无来源编译**：没抓到原文 / 缺 `source:` URL，就不编译进 wiki——先补来源，否则**列缺口**。
 2. **不复述 / 不编造**：摘要提炼新信息，禁止把原文复读回去，禁止编造用户没做过的事（对外草稿尤其）。
 
 ## 1 · 范围（v1）
-**必须抓全文**的文章、演讲、播客、长视频。**不抓**：X/推文/链接（→ `flash-idea`）。
+**凡是抓取链接拿到的文章原文**都进 raw/：文章、博客、X Article、推文长文 → `raw/articles`；播客、演讲、长视频 → `raw/podcasts`；论文 → `raw/papers`。**判定看输入形态，不看来源站点**。**不抓**：纯文本/聊天记录形态的闪念（→ `flash-idea`）。
 
 ## 2 · 进料 raw/
 1. 逐条抓全文 + 去噪（U+FFFC、空行、乱码）。**原文不改写**。

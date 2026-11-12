@@ -12,14 +12,14 @@
 
 | 目录 | 内容 | 进入方式 |
 |------|------|---------|
-| `articles/` | 文章、博客、长文 | Web Clipper 剪藏 / `obsidian` 剪藏技能 |
+| `articles/` | 文章、博客、长文、X Article、推文长文——**凡抓链接所得的原文** | Web Clipper 剪藏 / `obsidian` 剪藏技能 |
 | `podcasts/` | 播客、演讲、视频 | Podwise 导出 / `obsidian` 剪藏技能 |
 | `papers/` | 论文 | 手动 / `obsidian` 剪藏技能 |
-| `flash-idea/` | **闪念、灵感、推文**（记忆层兜底） | `flash-idea` 技能路由 |
+| `flash-idea/` | **闪念、灵感**——仅**纯文本/聊天记录**输入（记忆层兜底） | `flash-idea` 技能路由 |
 
 **规矩**
 - **原文不改**：只允许去噪（U+FFFC、空行、乱码），不改写、不摘要。
-- **一手闪念**可直接进 `flash-idea/`，一条一个文件或按日聚合（`flash-idea/2026-04-03.md`）。
+- **一手闪念**可直接进 `flash-idea/`，一条一个文件或按日聚合（`flash-idea/2026-04-03.md`）。**仅限纯文本/聊天记录输入**；抓链接所得的原文进 `articles/` 等对应目录。
 - 命名：来源文件名用 `S-### 简短标题.md`（见 `obsidian-apprentice-rules` ID 规范）。
 - 每个 raw 文件必须留 `source:` 原始 URL，作为 `[[S-###]]` 的锚点。
 

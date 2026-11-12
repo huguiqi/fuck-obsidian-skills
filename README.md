@@ -4,7 +4,7 @@
 
 # fuck-obsidian-skills
 
-把 LLM 变成你的**知识库编译器**：闪念/推文先进记忆层，再编译成结构化知识。
+把 LLM 变成你的**知识库编译器**：闪念（纯文本/聊天记录）先进记忆层，抓链接的文章原文进 `raw/articles`，再编译成结构化知识。
 一套遵循 [Agent Skills 规范](https://agentskills.io/specification) 的技能包，落地 Andrej Karpathy 的「LLM Knowledge Bases」方法论——**把 Vault 当代码仓库、LLM 当编译器、笔记当源码。**
 
 > 项目名：**fuck-obsidian-skills** · 机器人名：**fuck obsidian**
@@ -24,7 +24,7 @@
 |----|------|------|
 | 一次性安装引导 | `bot-onboarding` | **仅安装后第一次**跑：认识身份、记忆层、三层目录、护栏、技能地图、首胜 |
 | 首次对话彩排 | `getting-started` | 每次首次对话跑这个：入门 + 跑通一条闪念入库+编译 |
-| 闪念入库 | `flash-idea` | **记忆层**：闪念/灵感/推文（flomo MCP / 其它线上笔记 MCP / 本地 `raw/flash-idea/`） |
+| 闪念入库 | `flash-idea` | **记忆层**：闪念/灵感（纯文本/聊天记录输入，flomo MCP / 其它线上笔记 MCP / 本地 `raw/flash-idea/`） |
 | 剪藏编译 | `obsidian` | 批量剪藏文章/播客/论文，抓全文并编译 raw→wiki（摘要/概念/索引） |
 | 编译规范 | `obsidian-apprentice-rules` | Karpathy 编译与写入规范 + 冲突裁定 + 保留红线（写库前先看） |
 | 关联笔记 | `related-notes` | 分享一个想法 → 在 raw/wiki 找 ≤5 条相关笔记（一条一句"为什么"+ 路径） |
@@ -39,7 +39,7 @@
 Vault/
 ├── raw/                    # 原始资料层（input，不改）—— src/
 │   ├── articles/  podcasts/  papers/
-│   └── flash-idea/         # 闪念/灵感/推文（记忆层本地兜底）
+│   └── flash-idea/         # 闪念/灵感（纯文本/聊天记录输入，记忆层本地兜底）
 ├── wiki/                   # 编译产物层（compiled，LLM 维护）—— build/
 │   ├── summaries/  concepts/  indexes/
 ├── outputs/                # 运行时输出层（runtime）—— logs/

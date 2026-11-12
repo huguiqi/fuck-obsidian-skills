@@ -48,8 +48,8 @@ description: Use before any write/compile into the knowledge base. Karpathy 编�
 > 但以下边界保留：
 
 - ✅ **允许**：把 `raw/` 的原文/闪念**编译**成 `wiki/summaries`、`wiki/concepts`、`wiki/indexes`；补 `[[wikilink]]`；写 QA / 健康报告到 `outputs/`。
-- ❌ **仍禁止（亲历门槛）**：对外草稿（`x/`、`公众号/`、`小红书/`）里编造用户**没做过**的经历。只能用用户真做过的。
-- ❌ **仍禁止（隐私红线）**：情绪、焦虑、心理状态、语音日记原文入库或编译。逐字确认才留。
+- ❌ **禁止（隐私红线）**：情绪、焦虑、心理状态、语音日记原文入库或编译。逐字确认才留。
+- ❌ **禁止（个人信息红线）**：密码、手机号、token等能确定唯一身份的信息需要脱敏处理。
 
 ## 四、健康检查（每周，写到 `outputs/health/`）
 
