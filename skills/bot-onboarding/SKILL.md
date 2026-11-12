@@ -54,6 +54,7 @@ description: Run ONCE after the user installs fuck-obsidian-skills. 按编译规
 
 ## D · 三层地图
 **图**（核心 9 个位置）：`raw/articles|podcasts|papers|flash-idea` · `wiki/summaries|concepts|indexes` · `outputs/qa|health`。
+**边界**：平台成品（`x/`、`公众号/`、`小红书/`）由**专门的发布 bot**输出并存进对应平台目录（发哪个平台它定），不归本 bot。
 
 ## E · 护栏（一次选一组）
 **问**：「三个你最在意：E1 编辑前问你？ E2 对外草稿只用你真做过的事？ E3 项目只放这个库？ E4 我可以自主编译 raw→wiki？ E5 隐私内容不入库？」

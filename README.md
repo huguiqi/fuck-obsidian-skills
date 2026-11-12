@@ -44,7 +44,7 @@ Vault/
 │   ├── summaries/  concepts/  indexes/
 ├── outputs/                # 运行时输出层（runtime）—— logs/
 │   ├── qa/  health/
-└── x/  公众号/  小红书/     # 平台成品（给读者看，与 wiki 不混）
+└── x/  公众号/  小红书/     # 平台成品（给读者看，与 wiki 不混；专门的发布 bot 输出）
 ```
 
 **编译七心法**：编译 · 分层 · 增量 · 可追溯 · 索引优先（别上 RAG）· Output 落文件 · 每周健康检查。
