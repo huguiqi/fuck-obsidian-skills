@@ -1,73 +1,51 @@
 ---
 name: orphan-notes
-description: >-
-  Use when the user wants an orphan-note sweep in Obsidian (孤儿笔记): find notes
-  with no wikilinks to remind them to consider deleting, and surface likely
-  related pairs to nudge attention/linking. Read-only by default; never delete
-  or mass-link without explicit ask.
+display_name: 孤岛检查
+display_name_en: Orphan Notes
+description_zh: 孤儿笔记/健康检查：零双链 + 近关联配对，默认只读。
+description_en: Orphaned-notes health check — zero-backlink notes plus near-association pairing, read-only by default.
+version: "1.0.0"
+author: xiaohei_spring
+description: Use when the user asks for an orphaned-notes check / 健康检查 / 孤岛扫描 of the wiki, or wants to see notes with no backlinks and their near-associations. 只读、可解释，绝不擅自删/链/挪。
 ---
-# 孤儿笔记 (orphan notes)
 
-Proactively (or on ask) scan the Obsidian vault for **orphan notes** and **almost-related** notes. Remind the owner; do not silently clean the library.
+# orphan-notes — 孤岛扫描（健康检查）
 
-## Definitions
+> 方法论角色：Karpathy 健康检查的**孤岛**项（另两项：一致性、完整性）。扫零双链条目 + 近关联配对，给理由和路径，**不擅自处置**。
 
-- **Orphan (strict)**: a `.md` note with **no outbound `[[wikilink]]`** and **no inbound backlink** from other vault notes (ignore its own title). Embeds `![[…]]` count as links.
-- **Weak orphan**: has tags or folder context but still zero wikilinks either way—still report, label as weak.
-- **Almost-related**: two or more notes that share strong topical overlap (title/keywords/properties) but do **not** yet link to each other.
+## 0 · 任务（默认是"看"，不是"动"）
+1. **找孤儿**：列出**零入链**的 `[[条目]]`（≤15）。
+2. **近关联**：每个孤儿找近关联条目/概念（≤10），每对一句"为什么相关" + 可点路径。
+3. 输出是**可解释的报告**，不悄悄删/链/挪。
 
-Exclude by default (unless they ask to include):
+## 1 · 找孤儿（可追溯）
+1. **建反链索引**：扫 `wiki/`（`summaries`/`concepts`/`indexes`）里的 `[[条目]]`，建**入链表**（谁被链）。
+2. **零入链** = 孤儿；"入链"含文件名、标题、内联 `[[双链]]`。
+3. 用**文件名/标题**（不是模糊匹配）解析条目。
 
-- templates, daily-note shells, MOC index stubs you are told to keep
-- `AI outputs/` drafts unless they ask
-- attachments-only folders, `.base` / `.canvas` (mention separately only if useful)
-- mood / privacy paths named in memory
+## 2 · 近关联配对（LLM + 检索）
+给一个孤儿，找**值得连**的条目：
+- **同概念/同主题**（共享关键术语、标签、实体）
+- **直接/情境/证据**关系（`[[S-###]]` 来源也参与，不只 `wiki/`）
+- **LLM 语义相似**（读内容，不只关键词）
 
-## When to run
+每个孤儿 1–3 个近关联（≤10 组），**只挑真的**——不为凑数塞弱相关。
 
-- User says 「孤儿笔记」 / orphan sweep / clean unlinked notes.
-- Periodic health check they requested (routine or manual).
-- After a large import, offer one sweep.
+## 3 · 输出格式
+```
+孤儿笔记（零入链）：
+  [条目名] — 文件路径
+  ...
+---
+近关联：
+  [孤儿条目] ←→ [近关联条目/概念]
+    为什么相关（一句话）
+    路径：wiki/...  路径：wiki/...
+```
+- **一条笔记给路径**（相对 `raw/`/`wiki/` 路径或 `[[wikilink]]`，不报 `obsidian://`）。
+- **一对一句"为什么"**，不超过 10 组。
 
-## Privacy & gates
-
-- Skip emotion / anxiety / voice-diary notes entirely.
-- **Never delete** under this skill. Only suggest. Deletion needs an explicit yes per note (or a clear multi-select they confirm).
-- **Never mass-add wikilinks** without ask. Suggest pairs; wait.
-- Load `obsidian-apprentice-rules` before any write they approve.
-
-## Steps
-
-1. **Resolve vault** — path + machine from memory; confirm reachability.
-2. **Build link graph (read-only)** — scan `.md` under the vault (respect exclude list):
-   - collect outbound `[[…]]` and `![[…]]` targets (normalize to note ids)
-   - invert to backlinks
-3. **List orphans** — notes with zero out + zero in. Cap the report at **15**, prioritize:
-   - older mtime / clearly abandoned titles first
-   - very short empty-ish bodies
-   - outside protected folders
-4. **List almost-related** — up to **10** pairs/clusters with a one-line why (shared keywords, same project tag, near-duplicate titles). Prefer actionable pairs over huge clumps.
-5. **Reply** in two blocks:
-
-### 可能的孤儿（考虑删除或补链）
-
-- [Title](obsidian://…) — 无双链；短注：…（空 / 过时 / 重复嫌疑）
-
-### 可能有关联（提醒关注）
-
-- A ↔ B — 理由：…
-
-Then one ask: delete candidates (list numbers), add suggested links, or ignore. **Wait.**
-
-6. **If they approve deletes** — delete only the named files; confirm paths first; no trash-emptying outside vault tools they use.
-7. **If they approve links** — add minimal `[[wikilinks]]` (or a short "See also" line) only on the notes they named; spot-check render; report `obsidian://` links.
-
-## Empty / healthy vault
-
-If few or no orphans: say the graph looks healthy in one sentence; still offer almost-related if any. Do not invent problems.
-
-## Anti-patterns
-
-- Do not shame volume of notes.
-- Do not auto-delete "short" notes—short permanent notes are valid.
-- Do not turn this into a full re-org or new folder taxonomy.
+## 4 · 边界（不出声的不改）
+- **绝不**自动删除、链接、移动孤儿。**可以**建议去向（`wiki/indexes/`、合适 `C-###`），要不要做由用户定。
+- 只扫 `raw/`、`wiki/`，不越界到 `outputs/`、平台成品目录。
+- 没有孤儿 / 没有近关联就说**没有**，不硬凑。
